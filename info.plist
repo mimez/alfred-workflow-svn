@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.mimez.alfred-workflow-svn</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>4740D5BD-2492-43DE-9EC3-0039C9812893</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>55C913DA-C6C4-44C7-8054-5C3E0B49AE6C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Michael Mezger</string>
+	<key>description</key>
+	<string>Copy SVN Revision Description</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>SVN</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>svn</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please Wait</string>
+				<key>script</key>
+				<string>ini_set('display_errors', 0);
+require("vendor/autoload.php");
+if (getenv('SVN_URL') === false || getenv('SVN_USER') === false || getenv('SVN_PASS') === false) {
+    die('missing environment variable SVN_URL or SVN_USER or SVN_PASS');
+}
+
+$projectsWorkflow = new \Mimez\AlfredWorkflow\SvnWorkflow\SvnWorkflow(
+    getenv('SVN_URL'), 
+    getenv('SVN_USER'), 
+    getenv('SVN_PASS'),
+    getenv('SVN_BIN')
+);
+$projectsWorkflow({query});
+</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>4740D5BD-2492-43DE-9EC3-0039C9812893</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>55C913DA-C6C4-44C7-8054-5C3E0B49AE6C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>4740D5BD-2492-43DE-9EC3-0039C9812893</key>
+		<dict>
+			<key>xpos</key>
+			<integer>280</integer>
+			<key>ypos</key>
+			<integer>320</integer>
+		</dict>
+		<key>55C913DA-C6C4-44C7-8054-5C3E0B49AE6C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>320</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>SVN_BIN</key>
+		<string></string>
+		<key>SVN_PASS</key>
+		<string></string>
+		<key>SVN_URL</key>
+		<string></string>
+		<key>SVN_USER</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>SVN_PASS</string>
+		<string>SVN_URL</string>
+		<string>SVN_USER</string>
+		<string>SVN_BIN</string>
+	</array>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/mimez</string>
+</dict>
+</plist>
